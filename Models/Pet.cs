@@ -4,22 +4,23 @@ namespace Dojodachi.Models
 {
     public class Pet
     {
-        private int happiness = 20;
-        private int fullness = 20;
-        private int energy = 50;
-        private int meals = 3;
-        private bool alive = true;
-        private bool win = false;
         public int Happiness { get; set; }
         public int Fullness { get; set; }
         public int Energy { get; set; }
         public int Meals { get; set; }
         public bool Alive { get; set; }
-        public bool Win { get; set; }
+
+        public Pet()
+        {
+            Happiness = 20;
+            Fullness = 20;
+            Energy = 50;
+            Meals = 3;
+            Alive = true;
+        }
 
         // methods //
 
-        //FEED
         public string Feed()
         {
             if(Meals<1)
@@ -109,9 +110,7 @@ namespace Dojodachi.Models
         {
             if(Energy >= 100 && Fullness >= 100 && Happiness >= 100)
             {
-                Win = true;
                 return true;
-                // return "Your Dojodachi's spirit has achieved a state peace and transcended from this mortal realm. Congratulations... they left an egg. Raise it?";
             }
             else
                 return false;

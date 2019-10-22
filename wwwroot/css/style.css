@@ -1,0 +1,52 @@
+* {
+  font-family: comic sans ms;
+}
+
+ul
+{
+  display: flex;
+  justify-content: space-around;
+}
+
+ul li {
+  list-style: none;
+}
+
+.row {
+  width: 100%;
+}
+
+#main-header {
+  display: flex;
+  justify-content: center;
+}
+
+#main-container {
+  border: 2px solid #000;
+}
+
+#dojodachi-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5%;
+}
+
+#dojodachi-container img{
+  width: 50%;
+}
+
+#message-container {
+  display: flex;
+  justify-content: center;
+}
+#actions li {
+  border: 1.5px solid #000;
+  padding: 2.5%;
+  box-shadow: 3px 2px #000;
+}
+
+#actions li:hover {
+  cursor: pointer;
+  background-color: #888;
+}
