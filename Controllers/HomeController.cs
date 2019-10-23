@@ -34,6 +34,53 @@ namespace Dojodachi.Controllers
             return Json(updatedPet);
         }
 
+        [HttpPut("play")]
+        public JsonResult Play(Pet obj)
+        {
+            Pet updatedPet = new Pet(
+                obj.Fullness,
+                obj.Happiness,
+                obj.Meals,
+                obj.Energy
+            );
+
+            updatedPet.Message = updatedPet.Play();
+
+            return Json(updatedPet);
+        }
+
+        [HttpPut("work")]
+        public JsonResult Work(Pet obj)
+        {
+            Pet updatedPet = new Pet(
+                obj.Fullness,
+                obj.Happiness,
+                obj.Meals,
+                obj.Energy
+            );
+
+            updatedPet.Message = updatedPet.Work();
+
+            return Json(updatedPet);
+        }
+
+        [HttpPut("sleep")]
+        public JsonResult Sleep(Pet obj)
+        {
+            Pet updatedPet = new Pet(
+                obj.Fullness,
+                obj.Happiness,
+                obj.Meals,
+                obj.Energy
+            );
+
+            updatedPet.Message = updatedPet.Sleep();
+
+            return Json(updatedPet);
+        }
+
+
+
         [HttpGet("GetStats")]
         public JsonResult GetStats()
         {

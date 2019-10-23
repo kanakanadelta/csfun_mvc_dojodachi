@@ -75,4 +75,50 @@ $( document ).ready(function() {
     })
 
   })
+
+  $("#play-button").on("click", ()=>{
+    $("#message-container").empty();
+
+    $.ajax({
+      url: "../../play",
+      method: "PUT",
+      data: JSON.stringify(pet)
+    }).done((result)=>{
+      console.log(result);
+      pet = result;
+      updateStats(result);
+    })
+  })
+
+  $("#work-button").on("click", ()=>{
+    $("#message-container").empty();
+
+    $.ajax({
+      url: "../../work",
+      method: "PUT",
+      data: JSON.stringify(pet)
+    }).done((result)=>{
+      console.log(result);
+      pet = result;
+      updateStats(result);
+    })
+  })
+
+  $("#sleep-button").on("click", ()=>{
+    $("#message-container").empty();
+
+    $.ajax({
+      url: "../../sleep",
+      method: "PUT",
+      data: JSON.stringify(pet)
+    }).done((result)=>{
+      console.log(result);
+      pet = result;
+      updateStats(result);
+    })
+  })
+
+
+
+  // END 
 });
