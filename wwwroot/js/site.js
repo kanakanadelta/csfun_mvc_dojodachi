@@ -1,27 +1,42 @@
-var pet = {
-  fullness: 0,
-  happiness: 0,
-  meals: 0,
-  energy: 0,
-  alive: false
-}
-
-const updateStats = () => {
-  $("#fullness-data").empty();
-  $("#happiness-data").empty();
-  $("#meals-data").empty();
-  $("#energy-data").empty();
-  
-  $("#fullness-data").append(pet.fullness);
-  $("#happiness-data").append(pet.happiness)
-  $("#meals-data").append(pet.meals)
-  $("#energy-data").append(pet.energy)
-
-}
-
-
 $( document ).ready(function() {
-  updateStats();
+  var pet = {
+    fullness: $("#fullness-data").data("fullness"),
+    happiness: $("#happiness-data").data("happiness"),
+    meals: $("#meals-data").data("meals"),
+    energy: $("#energy-data").data("energy"),
+    alive: false,
+    message: "Hatch your egg!"
+  }
+
+  const updateStats = (petObj) => {
+    $.ajax({
+      url: setData(petObj)
+    }).done(()=>{
+      $("#fullness-data").append(petObj.fullness);
+      $("#happiness-data").append(petObj.happiness)
+      $("#meals-data").append(petObj.meals)
+      $("#energy-data").append(petObj.energy)
+      $("#message-container").append(petObj.message)
+    })
+  }
+
+  const setData = (petObj) => {
+    $("#fullness-data").empty();
+    $("#happiness-data").empty();
+    $("#meals-data").empty();
+    $("#energy-data").empty();
+    
+    $("#fullness-data").data("fullness", petObj.fullness);
+    $("#happiness-data").data("happiness", petObj.happiness);
+    $("#meals-data").data("meals", petObj.meals);
+    $("#energy-data").data("energy", petObj.energy);
+
+    pet = petObj;
+  }
+
+
+
+  updateStats(pet);
 
   $("#dojodachi-egg").on("click", ()=>{
     $.ajax({
@@ -35,12 +50,12 @@ $( document ).ready(function() {
       $("#dojodachi-container").append(()=>{
         return '<img src="https://vignette.wikia.nocookie.net/tamagotchi/images/2/2b/Kuchipatchi_anime.PNG/revision/latest/scale-to-width-down/350?cb=20110918052545" alt="green">';
       })
-      $("#message-container").append(()=>{
-        return "<p>Say hello to you dojodachi!</p>";
-      })
+      // $("#message-container").append(()=>{
+      //   return "<p>Say hello to you dojodachi!</p>";
+      // })
       pet = data;
-      // console.log(data);
-      updateStats();
+      console.log(data);
+      updateStats(pet);
     })
   })
 
@@ -49,13 +64,15 @@ $( document ).ready(function() {
   $("#feed-button").on("click", ()=>{
     $("#message-container").empty();
 
-    // $.ajax({
-    //   url: "/Home/feed",
-    //   method: "PUT",
-    //   data: {
-
-    //   }
-    // })
+    $.ajax({
+      url: "../../feed",
+      method: "PUT",
+      data: JSON.stringify(pet)
+    }).done((result)=>{
+      console.log(result);
+      pet = result;
+      updateStats(result);
+    })
 
   })
 });

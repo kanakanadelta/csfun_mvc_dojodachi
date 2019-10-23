@@ -10,6 +10,8 @@ namespace Dojodachi.Models
         public int Meals { get; set; }
         public bool Alive { get; set; }
 
+        public string Message {get; set;}
+
         public Pet()
         {
             Happiness = 20;
@@ -17,6 +19,22 @@ namespace Dojodachi.Models
             Energy = 50;
             Meals = 3;
             Alive = true;
+            Message = "Say hello to your Dojodachi!";
+        }
+
+        public Pet(
+            int fullness,
+            int happiness, 
+            int meals,
+            int energy
+        )
+        {
+            Happiness = happiness;
+            Fullness = fullness;
+            Energy = energy;
+            Meals = meals;
+            Alive = true;
+            Message = "";
         }
 
         // methods //
